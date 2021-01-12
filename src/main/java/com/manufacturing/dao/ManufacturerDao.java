@@ -15,5 +15,5 @@ public interface ManufacturerDao {
 
     boolean delete(Manufacturer manufacturer);
 
-    List<Manufacturer> getAllManufacturers();
+    List<Manufacturer> getAll();
 }

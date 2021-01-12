@@ -18,29 +18,23 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Optional<Manufacturer> get(Long manufacturerId) {
-        return getAllManufacturers().stream()
+        return getAll().stream()
                 .filter(m -> Objects.equals(m.getId(), manufacturerId))
                 .findFirst();
     }
 
     @Override
     public Manufacturer update(Manufacturer manufacturerUpdate) {
-        Manufacturer manufacturer = getAllManufacturers().stream()
+        Manufacturer manufacturer = getAll().stream()
                 .filter(m -> Objects.equals(m.getId(), manufacturerUpdate.getId()))
                 .findFirst().get();
-        manufacturer.setName(manufacturerUpdate.getName());
-        manufacturer.setCountry(manufacturerUpdate.getCountry());
-        return manufacturerUpdate;
+        int indexOf = Storage.manufacturers.indexOf(manufacturer);
+        return Storage.manufacturers.set(indexOf, manufacturerUpdate);
     }
 
     @Override
     public boolean deleteById(Long manufacturerId) {
-        for (Manufacturer manufacturer: getAllManufacturers()) {
-            if (Objects.equals(manufacturer.getId(), manufacturerId)) {
-                return Storage.manufacturers.remove(manufacturer);
-            }
-        }
-        return false;
+        return Storage.manufacturers.removeIf(m -> Objects.equals(m.getId(), manufacturerId));
     }
 
     @Override
@@ -49,7 +43,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     }
 
     @Override
-    public List<Manufacturer> getAllManufacturers() {
+    public List<Manufacturer> getAll() {
         return Storage.manufacturers;
     }
 }

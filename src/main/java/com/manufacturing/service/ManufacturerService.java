@@ -14,5 +14,5 @@ public interface ManufacturerService {
 
     boolean delete(Manufacturer manufacturer);
 
-    List<Manufacturer> getAllManufacturers();
+    List<Manufacturer> getAll();
 }
