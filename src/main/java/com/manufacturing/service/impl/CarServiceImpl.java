@@ -8,7 +8,6 @@ import com.manufacturing.model.Car;
 import com.manufacturing.model.Driver;
 import com.manufacturing.service.CarService;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -24,7 +23,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car get(Long id) {
-        return carDao.get(id).orElseThrow();
+        return carDao.get(id).get();
     }
 
     @Override
@@ -49,9 +48,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void addDriverToCar(Driver driver, Car car) {
-        if (!driverDao.getAll().contains(driver)) {
-            driverDao.create(driver);
-        }
         car.getDrivers().add(driver);
         carDao.update(car);
     }
@@ -64,12 +60,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAllByDriver(Long driverId) {
-        return carDao.getAll().stream()
-                .filter(c -> c.getDrivers()
-                        .stream()
-                        .map(d -> d.getId())
-                        .collect(Collectors.toList())
-                        .contains(driverId))
-                .collect(Collectors.toList());
+        return carDao.getAllByDriver(driverId);
     }
 }

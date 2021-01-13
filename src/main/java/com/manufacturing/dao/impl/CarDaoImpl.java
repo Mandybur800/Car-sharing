@@ -4,9 +4,11 @@ import com.manufacturing.dao.CarDao;
 import com.manufacturing.db.Storage;
 import com.manufacturing.lib.Dao;
 import com.manufacturing.model.Car;
+import com.manufacturing.model.Driver;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Dao
 public class CarDaoImpl implements CarDao {
@@ -43,5 +45,16 @@ public class CarDaoImpl implements CarDao {
     @Override
     public List<Car> getAll() {
         return Storage.cars;
+    }
+
+    @Override
+    public List<Car> getAllByDriver(Long driverId) {
+        return getAll().stream()
+                .filter(c -> c.getDrivers()
+                        .stream()
+                        .map(Driver::getId)
+                        .collect(Collectors.toList())
+                        .contains(driverId))
+                .collect(Collectors.toList());
     }
 }
