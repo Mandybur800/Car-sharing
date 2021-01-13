@@ -33,11 +33,6 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public boolean delete(Manufacturer manufacturer) {
-        return manufacturerDao.delete(manufacturer);
-    }
-
-    @Override
     public List<Manufacturer> getAll() {
         return manufacturerDao.getAll();
     }

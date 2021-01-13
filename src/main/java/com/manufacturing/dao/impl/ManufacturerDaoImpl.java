@@ -2,13 +2,11 @@ package com.manufacturing.dao.impl;
 
 import com.manufacturing.dao.ManufacturerDao;
 import com.manufacturing.db.Storage;
-import com.manufacturing.lib.Dao;
 import com.manufacturing.model.Manufacturer;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
@@ -33,11 +31,6 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public boolean deleteById(Long manufacturerId) {
         return Storage.manufacturers.removeIf(m -> Objects.equals(m.getId(), manufacturerId));
-    }
-
-    @Override
-    public boolean delete(Manufacturer manufacturer) {
-        return Storage.manufacturers.remove(manufacturer);
     }
 
     @Override

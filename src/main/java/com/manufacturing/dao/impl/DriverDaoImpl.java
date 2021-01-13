@@ -36,11 +36,6 @@ public class DriverDaoImpl implements DriverDao {
     }
 
     @Override
-    public boolean delete(Driver driver) {
-        return Storage.drivers.remove(driver);
-    }
-
-    @Override
     public List<Driver> getAll() {
         return Storage.drivers;
     }

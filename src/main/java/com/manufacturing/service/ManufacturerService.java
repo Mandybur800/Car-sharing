@@ -12,7 +12,5 @@ public interface ManufacturerService {
 
     boolean deleteById(Long manufacturerId);
 
-    boolean delete(Manufacturer manufacturer);
-
     List<Manufacturer> getAll();
 }

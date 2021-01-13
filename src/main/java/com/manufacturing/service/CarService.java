@@ -15,8 +15,6 @@ public interface CarService {
 
     boolean delete(Long id);
 
-    boolean delete(Car car);
-
     void addDriverToCar(Driver driver, Car car);
 
     void removeDriverFromCar(Driver driver, Car car);

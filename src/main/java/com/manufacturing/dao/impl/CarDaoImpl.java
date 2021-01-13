@@ -38,11 +38,6 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public boolean delete(Car car) {
-        return Storage.manufacturers.remove(car);
-    }
-
-    @Override
     public List<Car> getAll() {
         return Storage.cars;
     }

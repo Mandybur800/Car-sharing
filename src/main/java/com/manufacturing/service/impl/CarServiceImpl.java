@@ -42,11 +42,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public boolean delete(Car car) {
-        return carDao.delete(car);
-    }
-
-    @Override
     public void addDriverToCar(Driver driver, Car car) {
         car.getDrivers().add(driver);
         carDao.update(car);
