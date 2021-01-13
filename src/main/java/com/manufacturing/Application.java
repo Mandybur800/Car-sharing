@@ -27,7 +27,7 @@ public class Application {
         updatedManufacturer.setName("Audiens");
         manufacturerService.update(updatedManufacturer);
         System.out.println(manufacturerService.getAll());
-        manufacturerService.deleteById(1L);
+        manufacturerService.delete(1L);
         System.out.println(manufacturerService.get(2L));
         System.out.println(manufacturerService.getAll());
 

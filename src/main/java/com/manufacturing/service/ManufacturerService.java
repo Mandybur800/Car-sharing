@@ -10,7 +10,7 @@ public interface ManufacturerService {
 
     Manufacturer update(Manufacturer manufacturer);
 
-    boolean deleteById(Long manufacturerId);
+    boolean delete(Long manufacturerId);
 
     List<Manufacturer> getAll();
 }
