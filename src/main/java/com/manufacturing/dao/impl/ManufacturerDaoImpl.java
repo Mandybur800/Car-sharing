@@ -25,9 +25,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturerUpdate) {
-        Manufacturer manufacturer = getAll().stream()
-                .filter(m -> Objects.equals(m.getId(), manufacturerUpdate.getId()))
-                .findFirst().get();
+        Manufacturer manufacturer = get(manufacturerUpdate.getId()).get();
         int indexOf = Storage.manufacturers.indexOf(manufacturer);
         return Storage.manufacturers.set(indexOf, manufacturerUpdate);
     }
