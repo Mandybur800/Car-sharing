@@ -42,7 +42,7 @@ public class Application {
         driverService.create(driver4);
         driverService.delete(2L);
         System.out.println(driverService.getAll());
-        Driver updatedDriver = driverService.get(0L);
+        Driver updatedDriver = driverService.get(1L);
         updatedDriver.setName("Bohdan");
         driverService.update(updatedDriver);
         System.out.println(driverService.getAll());
@@ -56,16 +56,17 @@ public class Application {
         carService.create(car2);
         carService.create(car3);
         carService.create(car4);
-        carService.addDriverToCar(driverService.get(1L), carService.get(1L));
-        carService.addDriverToCar(driverService.get(3L), carService.get(1L));
+        carService.addDriverToCar(driverService.get(1L), carService.get(2L));
         carService.addDriverToCar(driverService.get(3L), carService.get(2L));
+        carService.addDriverToCar(driverService.get(3L), carService.get(3L));
+        System.out.println(carService.get(2L).getDrivers());
         System.out.println(carService.getAll());
-        Car updatedCar = carService.get(1L);
+        Car updatedCar = carService.get(2L);
         updatedCar.setModel("V800");
         carService.update(updatedCar);
-        carService.delete(0L);
+        carService.delete(1L);
         System.out.println(carService.getAll());
-        carService.removeDriverFromCar(driverService.get(1L), carService.get(1L));
+        carService.removeDriverFromCar(driverService.get(1L), carService.get(2L));
         System.out.println(carService.getAllByDriver(3L));
         System.out.println(carService.getAll());
     }
