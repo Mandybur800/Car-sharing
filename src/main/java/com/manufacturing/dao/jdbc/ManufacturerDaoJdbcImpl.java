@@ -62,7 +62,6 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             statement.setString(2, manufacturer.getCountry());
             statement.setLong(3, manufacturer.getId());
             statement.executeUpdate();
-            statement.close();
             return manufacturer;
         } catch (SQLException e) {
             throw new DataProcessingException("We can't update pow with id:"
@@ -77,7 +76,6 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, manufacturerId);
             int deletedLines = statement.executeUpdate();
-            statement.close();
             return deletedLines > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Delete of product with id="
@@ -97,7 +95,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             }
             return manufacturers;
         } catch (SQLException e) {
-            throw new DataProcessingException("Something going wrong", e);
+            throw new DataProcessingException("Something going wrong"
+                    + " with getting all manufacturers", e);
         }
     }
 
