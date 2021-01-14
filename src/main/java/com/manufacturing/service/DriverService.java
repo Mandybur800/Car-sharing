@@ -13,6 +13,4 @@ public interface DriverService {
     Driver update(Driver driver);
 
     boolean delete(Long id);
-
-    boolean delete(Driver driver);
 }

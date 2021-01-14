@@ -34,11 +34,6 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean delete(Long id) {
-        return driverDao.deleteById(id);
-    }
-
-    @Override
-    public boolean delete(Driver driver) {
-        return driverDao.delete(driver);
+        return driverDao.delete(id);
     }
 }

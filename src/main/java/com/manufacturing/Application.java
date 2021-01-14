@@ -23,13 +23,12 @@ public class Application {
         manufacturerService.create(manufacturer3);
         manufacturerService.create(manufacturer4);
         System.out.println(manufacturerService.getAll());
-        Manufacturer updatedManufacturer = manufacturerService.get(1L);
+        Manufacturer updatedManufacturer = manufacturerService.get(2L);
         updatedManufacturer.setName("Audiens");
         manufacturerService.update(updatedManufacturer);
         System.out.println(manufacturerService.getAll());
-        manufacturerService.deleteById(0L);
-        System.out.println(manufacturerService.get(1L));
-        manufacturerService.delete(updatedManufacturer);
+        manufacturerService.delete(1L);
+        System.out.println(manufacturerService.get(2L));
         System.out.println(manufacturerService.getAll());
 
         DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
@@ -49,10 +48,10 @@ public class Application {
         System.out.println(driverService.getAll());
 
         CarService carService = (CarService) injector.getInstance(CarService.class);
-        Car car1 = new Car("i8", manufacturerService.get(2L));
-        Car car2 = new Car("V500", manufacturerService.get(3L));
-        Car car3 = new Car("S6", manufacturerService.get(3L));
-        Car car4 = new Car("Verdon", manufacturerService.get(2L));
+        Car car1 = new Car("i8", manufacturerService.get(3L));
+        Car car2 = new Car("V500", manufacturerService.get(4L));
+        Car car3 = new Car("S6", manufacturerService.get(4L));
+        Car car4 = new Car("Verdon", manufacturerService.get(3L));
         carService.create(car1);
         carService.create(car2);
         carService.create(car3);

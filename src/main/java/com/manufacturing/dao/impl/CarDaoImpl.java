@@ -33,13 +33,8 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public boolean deleteById(Long carId) {
+    public boolean delete(Long carId) {
         return Storage.cars.removeIf(c -> Objects.equals(c.getId(), carId));
-    }
-
-    @Override
-    public boolean delete(Car car) {
-        return Storage.manufacturers.remove(car);
     }
 
     @Override

@@ -31,13 +31,8 @@ public class DriverDaoImpl implements DriverDao {
     }
 
     @Override
-    public boolean deleteById(Long driverId) {
+    public boolean delete(Long driverId) {
         return Storage.drivers.removeIf(d -> Objects.equals(d.getId(), driverId));
-    }
-
-    @Override
-    public boolean delete(Driver driver) {
-        return Storage.drivers.remove(driver);
     }
 
     @Override
