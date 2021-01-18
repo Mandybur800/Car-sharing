@@ -63,18 +63,21 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public Car update(Car car) {
+        String deleteQuery = "DELETE FROM cars_drivers WHERE car_id = ?";
         String insertQuery = "INSERT INTO cars_drivers (driver_id, car_id) VALUES (?, ?)";
         String query = "UPDATE cars SET manufacturer_id = ?, model = ? "
                 + "WHERE car_id = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query);
-                PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
+                PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery)) {
             statement.setLong(1, car.getManufacturer().getId());
             statement.setString(2, car.getModel());
             statement.setLong(3, car.getId());
             insertStatement.setLong(2, car.getId());
             statement.executeUpdate();
-            deleteDriversByID(car.getId());
+            deleteStatement.setLong(1, car.getId());
+            statement.executeUpdate();
             List<Driver> drivers = car.getDrivers();
             for (Driver driver : drivers) {
                 insertStatement.setLong(1, driver.getId());
@@ -140,17 +143,6 @@ public class CarDaoJdbcImpl implements CarDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Something going wrong"
                     + " with getting all cars for driver:" + driverId, e);
-        }
-    }
-
-    private void deleteDriversByID(Long carId) {
-        String query = "DELETE FROM cars_drivers WHERE car_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, carId);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DataProcessingException("We can't delete drivers from list", e);
         }
     }
 
