@@ -74,10 +74,10 @@ public class CarDaoJdbcImpl implements CarDao {
             statement.setLong(1, car.getManufacturer().getId());
             statement.setString(2, car.getModel());
             statement.setLong(3, car.getId());
-            insertStatement.setLong(2, car.getId());
             statement.executeUpdate();
             deleteStatement.setLong(1, car.getId());
-            statement.executeUpdate();
+            deleteStatement.executeUpdate();
+            insertStatement.setLong(2, car.getId());
             List<Driver> drivers = car.getDrivers();
             for (Driver driver : drivers) {
                 insertStatement.setLong(1, driver.getId());
