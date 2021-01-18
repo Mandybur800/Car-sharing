@@ -127,7 +127,7 @@ public class CarDaoJdbcImpl implements CarDao {
                 + "INNER JOIN cars c ON cd.car_id = c.car_id "
                 + "INNER JOIN manufacturers m ON c.manufacturer_id = m.manufacturer_id "
                 + "INNER JOIN drivers d ON d.driver_id = cd.driver_id "
-                + "WHERE cd.driver_id = ? AND d.deleted = FALSE";
+                + "WHERE cd.driver_id = ? AND d.deleted = FALSE AND c.deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, driverId);
