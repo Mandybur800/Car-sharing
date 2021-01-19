@@ -50,10 +50,8 @@ public class CarDaoJdbcImpl implements CarDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, carId);
             ResultSet resultSet = statement.executeQuery();
-            List<Driver> drivers = getDrivers(carId, connection);
             if (resultSet.next()) {
                 car = getCar(resultSet, connection);
-                car.setDrivers(drivers);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("We can't get car with ID:" + carId, e);
