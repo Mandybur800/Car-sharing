@@ -6,6 +6,7 @@ import com.manufacturing.model.Driver;
 import com.manufacturing.service.CarService;
 import com.manufacturing.service.DriverService;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +21,21 @@ public class AddDriverToCarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/car/addDriver.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/car/drivers/add.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        Long driverId = Long.valueOf(req.getParameter("driver_id"));
-        Long carId = Long.valueOf(req.getParameter("car_id"));
-        Car car = carService.get(carId);
-        Driver driver = driverService.get(driverId);
-        carService.addDriverToCar(driver,car);
-        resp.sendRedirect(req.getContextPath() + "/");
+            throws IOException, ServletException {
+        try {
+            Long driverId = Long.valueOf(req.getParameter("driver_id"));
+            Long carId = Long.valueOf(req.getParameter("car_id"));
+            Car car = carService.get(carId);
+            Driver driver = driverService.get(driverId);
+            carService.addDriverToCar(driver,car);
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (NoSuchElementException e) {
+            req.getRequestDispatcher("/WEB-INF/views/incorrect.jsp").forward(req, resp);
+        }
     }
 }

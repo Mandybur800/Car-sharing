@@ -21,7 +21,7 @@
         </a></td>
         <td><a href="${pageContext.request.contextPath}/driver/all">get all drivers</a></td>
         <td><a href="${pageContext.request.contextPath}/car/all">get all cars</a></td>
-        <td><a href="${pageContext.request.contextPath}/car/addDriver">
+        <td><a href="${pageContext.request.contextPath}/car/drivers/add">
             add driver to car
         </a></td>
     </tr>

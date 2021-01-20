@@ -99,7 +99,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addDriverToCar</servlet-name>
-        <url-pattern>/car/addDriver</url-pattern>
+        <url-pattern>/car/drivers/add</url-pattern>
     </servlet-mapping>
 
 </web-app>
