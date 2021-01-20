@@ -16,11 +16,11 @@
         <td><a href="${pageContext.request.contextPath}/car/create">create</a></td>
     </tr>
     <tr>
-        <td><a href="${pageContext.request.contextPath}/manufacturer/all">
+        <td><a href="${pageContext.request.contextPath}/manufacturer/">
             get all manufacturers
         </a></td>
-        <td><a href="${pageContext.request.contextPath}/driver/all">get all drivers</a></td>
-        <td><a href="${pageContext.request.contextPath}/car/all">get all cars</a></td>
+        <td><a href="${pageContext.request.contextPath}/driver/">get all drivers</a></td>
+        <td><a href="${pageContext.request.contextPath}/car/">get all cars</a></td>
         <td><a href="${pageContext.request.contextPath}/car/drivers/add">
             add driver to car
         </a></td>
