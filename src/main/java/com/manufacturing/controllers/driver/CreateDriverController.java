@@ -22,11 +22,22 @@ public class CreateDriverController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws IOException, ServletException {
         String name = req.getParameter("name");
         String license = req.getParameter("license");
+        String login = req.getParameter("login");
+        String password = req.getParameter("pwd");
+        String passwordRepeat = req.getParameter("pwd-repeat");
         Driver driver = new Driver(name, license);
-        driverService.create(driver);
-        resp.sendRedirect(req.getContextPath() + "/");
+        driver.setLogin(login);
+        if (password.equals(passwordRepeat)) {
+            driver.setPassword(password);
+            driverService.create(driver);
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            req.setAttribute("message", "passwords should be equals");
+            req.setAttribute("log", login);
+            req.getRequestDispatcher("/WEB-INF/views/driver/create.jsp").forward(req, resp);
+        }
     }
 }

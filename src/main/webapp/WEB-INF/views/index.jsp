@@ -14,6 +14,7 @@
             <td><a href="${pageContext.request.contextPath}/manufacturers/create">create</a></td>
             <td><a href="${pageContext.request.contextPath}/drivers/create">create</a></td>
             <td><a href="${pageContext.request.contextPath}/cars/create">create</a></td>
+            <td><a href="${pageContext.request.contextPath}/cars/my">get my cars</a></td>
         </tr>
         <tr>
             <td><a href="${pageContext.request.contextPath}/manufacturers/">
