@@ -35,6 +35,7 @@ public class AddDriverToCarController extends HttpServlet {
             carService.addDriverToCar(driver,car);
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NoSuchElementException e) {
+            req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/incorrect.jsp").forward(req, resp);
         }
     }

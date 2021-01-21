@@ -4,7 +4,8 @@
     <title>Attention</title>
 </head>
 <body>
-<h1>You enter incorrect data!!!</h1>
-<h4><a href="${pageContext.request.contextPath}/">back to menu</a></h4>
+    <h1>You enter incorrect data!!!</h1>
+    <h3>${error}</h3>
+    <h4><a href="${pageContext.request.contextPath}/">back to menu</a></h4>
 </body>
 </html>

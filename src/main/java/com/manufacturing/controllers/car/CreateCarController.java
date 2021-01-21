@@ -29,12 +29,12 @@ public class CreateCarController extends HttpServlet {
             throws IOException, ServletException {
         try {
             String model = req.getParameter("model");
-            String manufacturer = req.getParameter("manufacturer");
-            Long manufacturerId = Long.parseLong(manufacturer);
+            Long manufacturerId = Long.parseLong(req.getParameter("manufacturer"));
             Car car = new Car(model, manufacturerService.get(manufacturerId));
             carService.create(car);
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NoSuchElementException e) {
+            req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/incorrect.jsp").forward(req, resp);
         }
     }
