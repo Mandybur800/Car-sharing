@@ -28,10 +28,8 @@ public class CreateDriverController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("pwd");
         String passwordRepeat = req.getParameter("pwd-repeat");
-        Driver driver = new Driver(name, license);
-        driver.setLogin(login);
         if (password.equals(passwordRepeat)) {
-            driver.setPassword(password);
+            Driver driver = new Driver(name, license, login, password);
             driverService.create(driver);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {

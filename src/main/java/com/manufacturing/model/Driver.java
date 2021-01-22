@@ -14,6 +14,13 @@ public class Driver {
         this.licenceNumber = licenceNumber;
     }
 
+    public Driver(String name, String licenceNumber, String login, String password) {
+        this.name = name;
+        this.licenceNumber = licenceNumber;
+        this.login = login;
+        this.password = password;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
