@@ -1,8 +1,9 @@
 package com.manufacturing.web.filters;
 
 import com.manufacturing.lib.Injector;
-import com.manufacturing.service.DriverService;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,11 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
     private static final Injector injector = Injector.getInstance("com.manufacturing");
-    private final DriverService driverService = (DriverService)
-            injector.getInstance(DriverService.class);
+    private final Set<String> urls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        urls.add("/login");
+        urls.add("/drivers/create");
     }
 
     @Override
@@ -28,7 +30,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String servletPath = req.getServletPath();
-        if (servletPath.equals("/login") || servletPath.equals("/drivers/create")) {
+        if (urls.contains(servletPath)) {
             chain.doFilter(req, resp);
             return;
         }

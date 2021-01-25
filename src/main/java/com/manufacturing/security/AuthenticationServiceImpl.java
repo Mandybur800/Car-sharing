@@ -4,6 +4,7 @@ import com.manufacturing.lib.Inject;
 import com.manufacturing.lib.Service;
 import com.manufacturing.model.Driver;
 import com.manufacturing.service.DriverService;
+import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -12,10 +13,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Driver login(String login, String password) throws AuthenticationException {
-        Driver driverByLogin = driverService.findByLogin(login)
-                .orElseThrow(() -> new AuthenticationException("Incorrect login or password"));
-        if (driverByLogin.getPassword().equals(password)) {
-            return driverByLogin;
+        Optional<Driver> driverByLogin = driverService.findByLogin(login);
+        if (driverByLogin.isPresent() && driverByLogin.get().getPassword().equals(password)) {
+            return driverByLogin.get();
         }
         throw new AuthenticationException("Incorrect login or password");
     }
