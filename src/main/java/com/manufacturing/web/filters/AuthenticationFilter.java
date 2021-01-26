@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
     private static final Injector injector = Injector.getInstance("com.manufacturing");
-    private final Set<String> urls = new HashSet<>();
+    private final Set<String> allowedUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        urls.add("/login");
-        urls.add("/drivers/create");
+        allowedUrls.add("/login");
+        allowedUrls.add("/drivers/create");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String servletPath = req.getServletPath();
-        if (urls.contains(servletPath)) {
+        if (allowedUrls.contains(servletPath)) {
             chain.doFilter(req, resp);
             return;
         }
