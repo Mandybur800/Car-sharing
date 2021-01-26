@@ -69,3 +69,8 @@ ALTER TABLE `taxi_service`.`cars_drivers`
     ADD PRIMARY KEY (`id`);
 ;
 
+ALTER TABLE `taxi_service`.`drivers`
+    ADD COLUMN `login` VARCHAR(200) NOT NULL AFTER `deleted`,
+    ADD COLUMN `password` VARCHAR(200) NOT NULL AFTER `login`,
+    ADD UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE;
+;
